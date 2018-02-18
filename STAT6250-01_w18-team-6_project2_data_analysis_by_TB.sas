@@ -65,8 +65,8 @@ title2
 ;
 
 *
-Methodology: We add up the number of "S” (Steals) and “BLK” (Blocks) from the East 
-2016-17 and compare it to sum from West 2016-17 file.
+Methodology: We add up the number of "S” (Steals) and “BLK” (Blocks) from the 
+East 2016-17 and compare it to sum from West 2016-17 file.
 
 Limitaitons: This only takes into account Steals and Blocks. We can look at 
 other defensive stats such as points allowed for further anlaysis. 
