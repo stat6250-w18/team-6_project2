@@ -25,12 +25,13 @@ X "cd ""%substr(%sysget(SAS_EXECFILEPATH),1,%eval(%length(%sysget(SAS_EXECFILEPA
 %include '.\STAT6250-01_w18-team-6_project2_data_preparation.sas'
 
 
+
 *******************************************************************************;
 * Research Question Analysis Starting Point;
 *******************************************************************************;
 
 title1
-'Research Question: Which conference recorded the most points and assists?'
+'Research Question: Which conference recorded the most points and assists between the 2016 and 2017 season?'
 ;
 
 title2
@@ -49,9 +50,28 @@ Limitations: Although this will tell us which conference was offensivley
 dominant, we also need to look at total number of losses and wins for a more
 deeper analysis. 
 
-Followup Steps:
+Followup Steps: Get the total wins and loses for each conference and determine
+which conferene got the most wins over the other.
 ;
 
+proc sql;
+        select sum(points) as East_Conf_PTS
+        from East2016_17;
+
+proc sql;       
+        select sum(assists) as East_Conf_AST
+        from East2016_17;
+     
+proc sql;
+        select sum(points) as West_Conf_PTS
+        from East2016_17;
+        
+proc sql;       
+        select sum(assists) as West_Conf_AST
+        from West2016_17;     
+        
+        
+        
 *******************************************************************************;
 * Research Question Analysis Starting Point;
 *******************************************************************************;
@@ -71,15 +91,34 @@ East 2016-17 and compare it to sum from West 2016-17 file.
 Limitaitons: This only takes into account Steals and Blocks. We can look at 
 other defensive stats such as points allowed for further anlaysis. 
 
-Followup Steps:
+Followup Steps: Add up the points allowed by each conference and determine
+which conference allowed the least points.
 ;
 
+proc sql;
+        select sum(steals) as East_Conf_STL
+        from East2016_17;
+
+proc sql;       
+        select sum(blocks) as East_Conf_BLK
+        from East2016_17;
+     
+proc sql;
+        select sum(steals) as West_Conf_STL
+        from East2016_17;
+        
+proc sql;       
+        select sum(blocks) as West_Conf_BLK
+        from West2016_17;
+        
+        
+        
 *******************************************************************************;
 * Research Question Analysis Starting Point;
 *******************************************************************************;
 
 title1
-'Research Question: Which players attempted the most free throws between in the Eastern and Western Conference in 2016-17 season?'
+'Research Question: Which players attempted the most free throws the Eastern and Western Conference in 2016-17 season?'
 ;
 
 title2
@@ -93,6 +132,14 @@ and compare it the sum from West 2016-17 file.
 Limitations: We can look at other stats such as number of shots attempted and
 field goal percentage to see which players are offensively efficient. 
 
-Followup Steps;
+Followup Steps; Average the free throw percentage of all the players in each
+conference and see which shooting percentage is better between the two.
 ;
 
+proc sql;
+        select sum(FTA) as East_Conf_FTA
+        from East2016_17;
+ 
+proc sql;       
+        select sum(assists) as West_Conf_FTA
+        from West2016_17;   
