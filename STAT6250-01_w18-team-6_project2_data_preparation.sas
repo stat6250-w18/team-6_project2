@@ -126,7 +126,8 @@ https://github.com/stat6250/team-6_project2/blob/project02/data/Advanced_2016-17
 
 
 * sort and check raw datasets for duplicates with respect to their unique ids,
-  removing blank rows, if needed;
+removing blank rows, if needed
+;
 proc sort
         nodupkey
         data=East_16-17_raw
@@ -210,7 +211,9 @@ data East_West_Anlaytic_file;
 run;
 
 
-* build analytic dataset from raw datasets with the least number of columns
+* build analytic dataset from raw datasets with the least number of columns  
+and minimal cleaning/transformation needed to address research questions in
+corresponding data-analysis files
 ;
 data advanced_data_analytic_file;
     retain
