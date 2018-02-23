@@ -17,7 +17,7 @@ Eastern Conference
 
 [Data Dictionary] http://stats.nba.com/players
 
-[Unique ID Schema] The column “Teams” is a primary key
+[Unique ID Schema] The column “Player” is a primary key
 
 --
 
@@ -34,7 +34,7 @@ Western Conference
 
 [Data Dictionary] http://stats.nba.com/players
 
-[Unique ID Schema] The column “Players” is a primary key
+[Unique ID Schema] The column “Player” is a primary key
 
 --
 
@@ -51,7 +51,7 @@ from both the Eastern and Western Conference
 
 [Data Dictionary] http://stats.nba.com/players/advanced
 
-[Unique ID Schema] The column “Players” is a primary key
+[Unique ID Schema] The column “Player” is a primary key
 --
 ;
 
