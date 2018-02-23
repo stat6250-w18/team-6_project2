@@ -63,19 +63,19 @@ from both the Eastern and Western Conference
 https://github.com/stat6250/team-6_project2/blob/project02/data/East_16-17.xlsx?raw=true
 ;
 %let inputDataset1Type = XLSX;
-%let inputDataset1DSN = east_16-17_raw;
+%let inputDataset1DSN = East_16-17_raw;
 
 %let inputDataset2URL =
 https://github.com/stat6250/team-6_project2/blob/project02/data/West_16-17.xlsx?raw=true
 ;
 %let inputDataset2Type = XLSX;
-%let inputDataset2DSN = East_16-17_raw;
+%let inputDataset2DSN = West_16-17_raw;
 
 %let inputDataset3URL =
 https://github.com/stat6250/team-6_project2/blob/project02/data/Advanced_2016-17.xlsx?raw=true
 ;
 %let inputDataset3Type = XLSX;
-%let inputDataset3DSN = advanced_2016-17_raw;
+%let inputDataset3DSN = Advanced_2016-17_raw;
 
 
 * load raw datasets over the wire, if they doesn't already exist;
@@ -166,7 +166,7 @@ data East_West_Anlaytic_file;
         East_16-17_raw_sorted(in=East_row)
         West_16-17_raw_sorted(in=West_row)
     ;
-		retain
+   retain
         TEAM
         AGE
         GP
@@ -195,8 +195,8 @@ data East_West_Anlaytic_file;
         DD2
         TD3
         +/-
-		by
-			Player
+   by
+        Player
   if
       East_row=1
   then
@@ -214,7 +214,7 @@ run;
 ;
 data advanced_data_analytic_file;
     retain
-		    PLAYER
+	PLAYER
         TEAM
         AGE
         GP
