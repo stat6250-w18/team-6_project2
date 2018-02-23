@@ -38,11 +38,8 @@ title2
 'Rationale: This would help identify which conference is the offensive powerhouse.'
 ;
 
-
-*Note: This compares the column "PTS” from the East 2016-17 file to the column 
-of the same name from West 2016-17 file.
 *
-Methodology: We add up the number of points scored and assists recorded by each 
+Methodology: We add up the column PTS (Points) and AST (Assists) recorded by each 
 player in the West and East files. Then we compare the numbers to see which 
 conference recorded the most points and assists.
 
@@ -55,19 +52,19 @@ which conferene got the most wins over the other.
 ;
 
 proc sql;
-        select sum(points) as East_Conf_PTS
+        select sum(PTS) as East_Conf_PTS
         from East2016_17;
 
 proc sql;       
-        select sum(assists) as East_Conf_AST
+        select sum(AST) as East_Conf_AST
         from East2016_17;
      
 proc sql;
-        select sum(points) as West_Conf_PTS
+        select sum(PTS) as West_Conf_PTS
         from East2016_17;
         
 proc sql;       
-        select sum(assists) as West_Conf_AST
+        select sum(AST) as West_Conf_AST
         from West2016_17;     
         
         
@@ -85,7 +82,7 @@ title2
 ;
 
 *
-Methodology: We add up the number of "S” (Steals) and “BLK” (Blocks) from the 
+Methodology: We add up the number of "STL” (Steals) and “BLK” (Blocks) from the 
 East 2016-17 and compare it to sum from West 2016-17 file.
 
 Limitaitons: This only takes into account Steals and Blocks. We can look at 
@@ -96,19 +93,19 @@ which conference allowed the least points.
 ;
 
 proc sql;
-        select sum(steals) as East_Conf_STL
+        select sum(STL) as East_Conf_STL
         from East2016_17;
 
 proc sql;       
-        select sum(blocks) as East_Conf_BLK
+        select sum(BLK) as East_Conf_BLK
         from East2016_17;
      
 proc sql;
-        select sum(steals) as West_Conf_STL
+        select sum(STL) as West_Conf_STL
         from East2016_17;
         
 proc sql;       
-        select sum(blocks) as West_Conf_BLK
+        select sum(BLK) as West_Conf_BLK
         from West2016_17;
         
         
@@ -126,7 +123,7 @@ title2
 ;
 
 *
-Methodology: We add up the number "FTA” (Free Throws) from the East 2016-17 
+Methodology: We add up the number "FTA” (Free Throw Attempt) from the East 2016-17 
 and compare it the sum from West 2016-17 file.
 
 Limitations: We can look at other stats such as number of shots attempted and
@@ -141,5 +138,5 @@ proc sql;
         from East2016_17;
  
 proc sql;       
-        select sum(assists) as West_Conf_FTA
+        select sum(FTA) as West_Conf_FTA
         from West2016_17;   
