@@ -39,9 +39,9 @@ title2
 ;
 
 *
-Methodology: We add up the column PTS (Points) and AST (Assists) recorded by each 
-player in the West and East files. Then we compare the numbers to see which 
-conference recorded the most points and assists.
+Methodology: We add up the column PTS (Points) and AST (Assists) recorded by 
+each player in the West and East files. Then we compare the numbers to see 
+which conference recorded the most points and assists.
 
 Limitations: Although this will tell us which conference was offensivley 
 dominant, we also need to look at total number of losses and wins for a more
@@ -123,8 +123,8 @@ title2
 ;
 
 *
-Methodology: We add up the number "FTA” (Free Throw Attempt) from the East 2016-17 
-and compare it the sum from West 2016-17 file.
+Methodology: We add up the number "FTA” (Free Throw Attempt) from the East 
+2016-17 and compare it the sum from West 2016-17 file.
 
 Limitations: We can look at other stats such as number of shots attempted and
 field goal percentage to see which players are offensively efficient. 
