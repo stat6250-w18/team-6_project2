@@ -163,7 +163,6 @@ proc sort
 run;
 
 
-
 * combine East1617 data and West1617 data vertically
 ;
 data East_West_Anlaytic_file;
