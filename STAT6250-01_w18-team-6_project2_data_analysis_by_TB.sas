@@ -39,6 +39,9 @@ title2
 ;
 
 *
+Notes: This compares the Points (PTS) and Assists (AST) column in the East
+2016-17 data file with the same columns in the West 2016-17 data files.
+
 Methodology: We add up the column PTS (Points) and AST (Assists) recorded by 
 each player in the West and East files. Then we compare the numbers to see 
 which conference recorded the most points and assists.
@@ -53,19 +56,14 @@ which conferene got the most wins over the other.
 
 proc sql;
         select sum(PTS) as East_Conf_PTS
-        from East2016_17;
-
-proc sql;       
+        from East_2016_17_raw_sorted;       
         select sum(AST) as East_Conf_AST
-        from East2016_17;
-     
-proc sql;
+        from East_2016_17_raw_sorted;
         select sum(PTS) as West_Conf_PTS
-        from East2016_17;
-        
-proc sql;       
+        from West_2016_17_raw_sorted;      
         select sum(AST) as West_Conf_AST
-        from West2016_17;     
+        from West_2016_17_raw_sorted;     
+run;       
         
         
         
@@ -82,6 +80,9 @@ title2
 ;
 
 *
+Note: This compares the column Steals (STL) and Blocks (BLK) in the East 
+2016-17 data file with the same columns in the West 2016-17 files.
+
 Methodology: We add up the number of "STL” (Steals) and “BLK” (Blocks) from the 
 East 2016-17 and compare it to sum from West 2016-17 file.
 
@@ -94,19 +95,14 @@ which conference allowed the least points.
 
 proc sql;
         select sum(STL) as East_Conf_STL
-        from East2016_17;
-
-proc sql;       
+        from East_2016_17_raw_sorted;    
         select sum(BLK) as East_Conf_BLK
-        from East2016_17;
-     
-proc sql;
+        from East_2016_17_raw_sorted;
         select sum(STL) as West_Conf_STL
-        from East2016_17;
-        
-proc sql;       
+        from West_2016_17_raw_sorted;      
         select sum(BLK) as West_Conf_BLK
-        from West2016_17;
+        from West_2016_17_raw_sorted;
+run;       
         
         
         
@@ -123,6 +119,9 @@ title2
 ;
 
 *
+Note: This compares the Free Throw Attempts (FTA) between the East 2016-17
+data with the FTA column in the West 2016-17 data.
+
 Methodology: We add up the number "FTA” (Free Throw Attempt) from the East 
 2016-17 and compare it the sum from West 2016-17 file.
 
@@ -135,8 +134,8 @@ conference and see which shooting percentage is better between the two.
 
 proc sql;
         select sum(FTA) as East_Conf_FTA
-        from East2016_17;
- 
-proc sql;       
+        from East_2016_17_raw_sorted;   
         select sum(FTA) as West_Conf_FTA
-        from West2016_17;   
+        from West_2016_17_raw_sorted;   
+run;
+
