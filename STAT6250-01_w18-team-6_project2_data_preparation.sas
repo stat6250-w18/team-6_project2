@@ -69,7 +69,7 @@ https://github.com/stat6250/team-6_project2/blob/project02/data/East1617.xlsx?ra
 https://github.com/stat6250/team-6_project2/blob/project02/data/West1617.xlsx?raw=true
 ;
 %let inputDataset2Type = XLSX;
-%let inputDataset2DSN = West16-17_raw;
+%let inputDataset2DSN = West1617_raw;
 
 %let inputDataset3URL =
 https://github.com/stat6250/team-6_project2/blob/project02/data/Advanced201617.xlsx?raw=true
