@@ -60,25 +60,26 @@ from both the Eastern and Western Conference
 
 * setup environmental parameters;
 %let inputDataset1URL =
-https://github.com/stat6250/team-6_project2/blob/project02/data/East_16-17.xlsx?raw=true
+https://github.com/stat6250/team-6_project2/blob/project02/data/East1617.xlsx?raw=true
 ;
 %let inputDataset1Type = XLSX;
-%let inputDataset1DSN = East_16-17_raw;
+%let inputDataset1DSN = East1617_raw;
 
 %let inputDataset2URL =
-https://github.com/stat6250/team-6_project2/blob/project02/data/West_16-17.xlsx?raw=true
+https://github.com/stat6250/team-6_project2/blob/project02/data/West1617.xlsx?raw=true
 ;
 %let inputDataset2Type = XLSX;
-%let inputDataset2DSN = West_16-17_raw;
+%let inputDataset2DSN = West16-17_raw;
 
 %let inputDataset3URL =
-https://github.com/stat6250/team-6_project2/blob/project02/data/Advanced_2016-17.xlsx?raw=true
+https://github.com/stat6250/team-6_project2/blob/project02/data/Advanced201617.xlsx?raw=true
 ;
 %let inputDataset3Type = XLSX;
-%let inputDataset3DSN = Advanced_2016-17_raw;
+%let inputDataset3DSN = Advanced201617_raw;
 
 
 * load raw datasets over the wire, if they doesn't already exist;
+
 %macro loadDataIfNotAlreadyAvailable(dsn,url,filetype);
     %put &=dsn;
     %put &=url;
@@ -130,29 +131,31 @@ removing blank rows, if needed
 ;
 proc sort
         nodupkey
-        data=East_16-17_raw
-        dupout=East_16-17_raw_dups
-        out=East_16-17_raw_sorted
+        data=East1617_raw
+        dupout=East1617_raw_dups
+        out=East1617_raw_sorted(where=(not(missing(Player))))
     ;
     by
        Player
     ;
 run;
+
 proc sort
         nodupkey
-        data=West_16-17_raw
-        dupout=West_16-17_raw_dups
-        out=West_16-17_raw_sorted
+        data=West1617_raw
+        dupout=West1617_raw_dups
+        out=West1617_raw_sorted
     ;
     by
         Player
     ;
 run;
+
 proc sort
         nodupkey
-        data=Advanced_16-17_raw
-        dupout=Advanced_16-17_raw_dups
-        out=Advanced_16-17_raw_sorted
+        data=Advanced1617_raw
+        dupout=Advanced1617_raw_dups
+        out=Advanced1617_raw_sorted
     ;
     by
         Player
@@ -160,12 +163,12 @@ proc sort
 run;
 
 
-* combine East_16-17 data and West_16-17 data vertically
+* combine East1617 data and West1617 data vertically
 ;
 data East_West_Anlaytic_file;
    set
-        East_16-17_raw_sorted(in=East_row)
-        West_16-17_raw_sorted(in=West_row)
+        East1617_raw_sorted(in=East_row)
+        West1617_raw_sorted(in=West_row)
     ;
    retain
         TEAM
@@ -202,11 +205,11 @@ data East_West_Anlaytic_file;
       East_row=1
   then
       do;
-          data_source=East_16-17_raw_sorted;
+          data_source=East1617_raw_sorted;
       end;
   else
       do;
-          data_source=West_16-17_raw_sorted;
+          data_source=West1617_raw_sorted;
       end;
 run;
 
