@@ -65,7 +65,11 @@ proc sql;
         from West201617_raw_sorted;     
 run;       
         
-        
+proc plot data=East_West_Anlaytic_file;
+   plot PTS='*'
+        AST='o' / overlay box;
+      
+
         
 *******************************************************************************;
 * Research Question Analysis Starting Point;
