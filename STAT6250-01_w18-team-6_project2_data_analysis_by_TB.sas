@@ -65,13 +65,27 @@ proc sql;
         from West201617_raw_sorted;     
 run;       
         
-proc plot data=East_West_Anlaytic_file;
-   plot 
-       PTS:'x'
-       AST:'o' / overlay box;
- run;    
+proc print 
+    data=East_West_Anlaytic_file
+   ;
+   var
+       Player
+       AST
+       PTS
+   ;
+run;
 
-        
+*
+Graph Assists and Points for both Eastern and Western conference players.
+;
+proc sgplot data=East_West_Anlaytic_file;
+     scatter x=PTS
+             y=AST / merkerattrs=(symbol=circlefilled size=10px)
+             filledoutlinedmarkers group=TEAM;
+ run;
+       
+       
+       
 *******************************************************************************;
 * Research Question Analysis Starting Point;
 *******************************************************************************;
@@ -108,9 +122,18 @@ proc sql;
         select sum(BLK) as West_Conf_BLK
         from West201617_raw_sorted;
 run;       
+     
+*
+Graph Assists and Points for both Eastern and Western conference players.
+;
+proc sgplot data=East_West_Anlaytic_file;
+     scatter x=STL
+             y=BLK / merkerattrs=(symbol=circlefilled size=10px)
+             filledoutlinedmarkers group=TEAM;
+ run;
         
-        
-        
+  
+  
 *******************************************************************************;
 * Research Question Analysis Starting Point;
 *******************************************************************************;
@@ -144,3 +167,11 @@ proc sql;
         from West201617_raw_sorted;   
 run;
 
+*
+Graph Assists and Points for both Eastern and Western conference players.
+;
+proc sgplot data=East_West_Anlaytic_file;
+     scatter x=
+             y=BLK / merkerattrs=(symbol=circlefilled size=10px)
+             filledoutlinedmarkers group=TEAM;
+ run;
