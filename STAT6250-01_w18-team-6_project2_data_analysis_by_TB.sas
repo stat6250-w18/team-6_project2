@@ -66,7 +66,7 @@ proc sql;
 run;       
         
 proc print 
-    data=East_West_Anlaytic_file
+    data=East_West_Analytic_file
    ;
    var
        Player
@@ -78,7 +78,7 @@ run;
 *
 Graph Assists and Points for both Eastern and Western conference players.
 ;
-proc sgplot data=East_West_Anlaytic_file;
+proc sgplot data=East_West_Analytic_file;
      scatter x=PTS
              y=AST / merkerattrs=(symbol=circlefilled size=10px)
              filledoutlinedmarkers group=TEAM;
@@ -106,7 +106,7 @@ Methodology: We add up the number of "STL” (Steals) and “BLK” (Blocks) fro
 East 2016-17 and compare it to sum from West 2016-17 file.
 
 Limitaitons: This only takes into account Steals and Blocks. We can look at 
-other defensive stats such as points allowed for further anlaysis. 
+other defensive stats such as points allowed for further analysis. 
 
 Followup Steps: Add up the points allowed by each conference and determine
 which conference allowed the least points.
@@ -126,7 +126,7 @@ run;
 *
 Graph Assists and Points for both Eastern and Western conference players.
 ;
-proc sgplot data=East_West_Anlaytic_file;
+proc sgplot data=East_West_Analytic_file;
      scatter x=STL
              y=BLK / merkerattrs=(symbol=circlefilled size=10px)
              filledoutlinedmarkers group=TEAM;
@@ -170,7 +170,7 @@ run;
 *
 Graph Assists and Points for both Eastern and Western conference players.
 ;
-proc sgplot data=East_West_Anlaytic_file;
+proc sgplot data=East_West_Analytic_file;
      scatter x=TEAM
              y=BLK / merkerattrs=(symbol=circlefilled size=10px)
              filledoutlinedmarkers group=TEAM;
