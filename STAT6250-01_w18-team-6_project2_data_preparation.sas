@@ -176,13 +176,13 @@ data East_West_Anlaytic_file;
         PTS
         FGM
         FGA
-        FG%
-        3PM
-        3PA
-        3P%
+        FG_
+        _3PM
+        _3PA
+        _3P_
         FTM
         FTA
-        FT%
+        FT_
         OREB
         DREB
         REB
@@ -194,7 +194,7 @@ data East_West_Anlaytic_file;
         FP
         DD2
         TD3
-        +/-
+        VAR30
    ;
    keep
    	TEAM
@@ -206,13 +206,13 @@ data East_West_Anlaytic_file;
         PTS
         FGM
         FGA
-        FG%
-        3PM
-        3PA
-        3P%
+        FG_
+        _3PM
+        _3PA
+        _3P_
         FTM
         FTA
-        FT%
+        FT_
         OREB
         DREB
         REB
@@ -224,7 +224,7 @@ data East_West_Anlaytic_file;
         FP
         DD2
         TD3
-        +/-
+        VAR30
    ;
    set
         East201617_raw_sorted(in=East_row)
@@ -252,16 +252,16 @@ data advanced_data_analytic_file;
         OFFRTG
         DEFRTG
         NETRTG
-        AST%
-        AST/TO
-        AST Ratio
-        OREB%
-        DREB%
-        REB%
-        TO Ratio
-        eFG%
-        TS%
-        USG%
+        AST_
+        AST_TO
+        AST_Ratio
+        OREB_
+        DREB_
+        REB_
+        TO_Ratio
+        eFG_
+        TS_
+        USG_
         PACE
         PIE
     ;
@@ -275,22 +275,18 @@ data advanced_data_analytic_file;
         OFFRTG
         DEFRTG
         NETRTG
-        AST%
-        AST/TO
-        AST Ratio
-        OREB%
-        DREB%
-        REB%
-        TO Ratio
-        eFG%
-        TS%
-        USG%
+        AST_
+        AST_TO
+        AST_Ratio
+        OREB_
+        DREB_
+        REB_
+        TO_Ratio
+        eFG_
+        TS_
+        USG_
         PACE
         PIE
-    ;
-    merge
-        East_West_Analytic_file
-      	advanced_data_analytic_file
     ;
     by
         Player
