@@ -60,19 +60,19 @@ from both the Eastern and Western Conference
 
 * setup environmental parameters;
 %let inputDataset1URL =
-https://github.com/stat6250/team-6_project2/blob/project02/blob/master/data/East201617.xlsx?raw=true
+https://github.com/stat6250/team-6_project2/blob/master/data/East201617.xlsx?raw=true
 ;
 %let inputDataset1Type = XLSX;
 %let inputDataset1DSN = East201617_raw;
 
 %let inputDataset2URL =
-https://github.com/stat6250/team-6_project2/blob/project02/blob/master/data/West201617.xlsx?raw=true
+https://github.com/stat6250/team-6_project2/blob/master/data/West201617.xlsx?raw=true
 ;
 %let inputDataset2Type = XLSX;
 %let inputDataset2DSN = West201617_raw;
 
 %let inputDataset3URL =
-https://github.com/stat6250/team-6_project2/blob/project02/blob/master/data/Advanced201617.xlsx?raw=true
+https://github.com/stat6250/team-6_project2/blob/master/data/Advanced201617.xlsx?raw=true
 ;
 %let inputDataset3Type = XLSX;
 %let inputDataset3DSN = Advanced201617_raw;
@@ -290,7 +290,7 @@ data advanced_data_analytic_file;
     ;
     merge
         East_West_Analytic_file
-      	Advanced201617_raw_sorted
+      	advanced_data_analytic_file
     ;
     by
         Player
