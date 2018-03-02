@@ -288,7 +288,4 @@ data advanced_data_analytic_file;
         PACE
         PIE
     ;
-    by
-        Player
-    ;
-run;
+   
