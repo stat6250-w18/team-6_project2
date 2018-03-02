@@ -60,19 +60,19 @@ from both the Eastern and Western Conference
 
 * setup environmental parameters;
 %let inputDataset1URL =
-https://github.com/stat6250/team-6_project2/blob/project02/data/East1617.xlsx?raw=true
+https://github.com/stat6250/team-6_project2/blob/project02/blob/master/data/East201617.xlsx?raw=true
 ;
 %let inputDataset1Type = XLSX;
-%let inputDataset1DSN = East1617_raw;
+%let inputDataset1DSN = East201617_raw;
 
 %let inputDataset2URL =
-https://github.com/stat6250/team-6_project2/blob/project02/data/West1617.xlsx?raw=true
+https://github.com/stat6250/team-6_project2/blob/project02/blob/master/data/West201617.xlsx?raw=true
 ;
 %let inputDataset2Type = XLSX;
-%let inputDataset2DSN = West1617_raw;
+%let inputDataset2DSN = West201617_raw;
 
 %let inputDataset3URL =
-https://github.com/stat6250/team-6_project2/blob/project02/data/Advanced201617.xlsx?raw=true
+https://github.com/stat6250/team-6_project2/blob/project02/blob/master/data/Advanced201617.xlsx?raw=true
 ;
 %let inputDataset3Type = XLSX;
 %let inputDataset3DSN = Advanced201617_raw;
@@ -131,9 +131,9 @@ removing blank rows, if needed
 ;
 proc sort
         nodupkey
-        data=East1617_raw
-        dupout=East1617_raw_dups
-        out=East1617_raw_sorted(where=(not(missing(Player))))
+        data=East201617_raw
+        dupout=East201617_raw_dups
+        out=East201617_raw_sorted(where=(not(missing(Player))))
     ;
     by
        Player
@@ -142,9 +142,9 @@ run;
 
 proc sort
         nodupkey
-        data=West1617_raw
-        dupout=West1617_raw_dups
-        out=West1617_raw_sorted
+        data=West201617_raw
+        dupout=West201617_raw_dups
+        out=West201617_raw_sorted
     ;
     by
         Player
@@ -153,9 +153,9 @@ run;
 
 proc sort
         nodupkey
-        data=Advanced1617_raw
-        dupout=Advanced1617_raw_dups
-        out=Advanced1617_raw_sorted
+        data=Advanced201617_raw
+        dupout=Advanced201617_raw_dups
+        out=Advanced201617_raw_sorted
     ;
     by
         Player
@@ -166,10 +166,6 @@ run;
 * combine East1617 data and West1617 data vertically
 ;
 data East_West_Anlaytic_file;
-   set
-        East1617_raw_sorted(in=East_row)
-        West1617_raw_sorted(in=West_row)
-    ;
    retain
         TEAM
         AGE
@@ -199,18 +195,44 @@ data East_West_Anlaytic_file;
         DD2
         TD3
         +/-
+   ;
+   keep
+   	TEAM
+        AGE
+        GP
+        W
+        L
+        MIN
+        PTS
+        FGM
+        FGA
+        FG%
+        3PM
+        3PA
+        3P%
+        FTM
+        FTA
+        FT%
+        OREB
+        DREB
+        REB
+        AST
+        TOV
+        STL
+        BLK
+        PF
+        FP
+        DD2
+        TD3
+        +/-
+   ;
+   set
+        East201617_raw_sorted(in=East_row)
+        West201617_raw_sorted(in=West_row)
+    ;
    by
         Player
-  if
-      East_row=1
-  then
-      do;
-          data_source=East1617_raw_sorted;
-      end;
-  else
-      do;
-          data_source=West1617_raw_sorted;
-      end;
+    ;
 run;
 
 
@@ -268,9 +290,9 @@ data advanced_data_analytic_file;
     ;
     merge
         East_West_Analytic_file
-      	Advanced_16-17 
+      	Advanced201617_raw_sorted
     ;
     by
         Player
-	;
+    ;
 run;
