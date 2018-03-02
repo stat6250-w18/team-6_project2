@@ -66,9 +66,9 @@ proc sql;
 run;       
         
 proc plot data=East_West_Anlaytic_file;
-   plot PTS='*'
+   plot PTS='x'
         AST='o' / overlay box;
-      
+ run;    
 
         
 *******************************************************************************;
