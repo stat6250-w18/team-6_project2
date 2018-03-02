@@ -56,13 +56,13 @@ which conferene got the most wins over the other.
 
 proc sql;
         select sum(PTS) as East_Conf_PTS
-        from East_2016_17_raw_sorted;       
+        from East201617_raw_sorted;       
         select sum(AST) as East_Conf_AST
-        from East_2016_17_raw_sorted;
+        from East201617_raw_sorted;
         select sum(PTS) as West_Conf_PTS
-        from West_2016_17_raw_sorted;      
+        from West201617_raw_sorted;      
         select sum(AST) as West_Conf_AST
-        from West_2016_17_raw_sorted;     
+        from West201617_raw_sorted;     
 run;       
         
         
@@ -95,13 +95,13 @@ which conference allowed the least points.
 
 proc sql;
         select sum(STL) as East_Conf_STL
-        from East_2016_17_raw_sorted;    
+        from East201617_raw_sorted;    
         select sum(BLK) as East_Conf_BLK
-        from East_2016_17_raw_sorted;
+        from East201617_raw_sorted;
         select sum(STL) as West_Conf_STL
-        from West_2016_17_raw_sorted;      
+        from West201617_raw_sorted;      
         select sum(BLK) as West_Conf_BLK
-        from West_2016_17_raw_sorted;
+        from West201617_raw_sorted;
 run;       
         
         
@@ -134,8 +134,8 @@ conference and see which shooting percentage is better between the two.
 
 proc sql;
         select sum(FTA) as East_Conf_FTA
-        from East_2016_17_raw_sorted;   
+        from East201617_raw_sorted;   
         select sum(FTA) as West_Conf_FTA
-        from West_2016_17_raw_sorted;   
+        from West201617_raw_sorted;   
 run;
 
