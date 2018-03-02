@@ -65,8 +65,10 @@ proc sql;
         from West201617_raw_sorted;     
 run;       
         
-proc plot data=East_West_Anlaytic_file;
-   plot PTS='x'
+proc plot;
+        data=East_West_Anlaytic_file;
+   plot 
+        PTS='x'
         AST='o' / overlay box;
  run;    
 
@@ -132,7 +134,7 @@ Methodology: We add up the number "FTA” (Free Throw Attempt) from the East
 Limitations: We can look at other stats such as number of shots attempted and
 field goal percentage to see which players are offensively efficient. 
 
-Followup Steps; Average the free throw percentage of all the players in each
+Followup Steps; Find the avg free throw percentage of all the players in each
 conference and see which shooting percentage is better between the two.
 ;
 
