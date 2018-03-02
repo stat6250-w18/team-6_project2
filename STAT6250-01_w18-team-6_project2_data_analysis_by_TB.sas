@@ -171,7 +171,7 @@ run;
 Graph Assists and Points for both Eastern and Western conference players.
 ;
 proc sgplot data=East_West_Anlaytic_file;
-     scatter x=
+     scatter x=TEAM
              y=BLK / merkerattrs=(symbol=circlefilled size=10px)
              filledoutlinedmarkers group=TEAM;
  run;
