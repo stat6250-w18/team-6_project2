@@ -69,7 +69,7 @@ proc print
     data=East_West_Analytic_file
    ;
    var
-       Player
+       TEAM
        AST
        PTS
    ;
@@ -80,7 +80,7 @@ Graph Assists and Points for both Eastern and Western conference players.
 ;
 proc sgplot data=East_West_Analytic_file;
      scatter x=PTS
-             y=AST / merkerattrs=(symbol=circlefilled size=10px)
+             y=AST / markerattrs=(symbol=circlefilled size=10px)
              filledoutlinedmarkers group=TEAM;
  run;
        
@@ -128,7 +128,7 @@ Graph Assists and Points for both Eastern and Western conference players.
 ;
 proc sgplot data=East_West_Analytic_file;
      scatter x=STL
-             y=BLK / merkerattrs=(symbol=circlefilled size=10px)
+             y=BLK / markerattrs=(symbol=circlefilled size=10px)
              filledoutlinedmarkers group=TEAM;
  run;
         
@@ -172,6 +172,6 @@ Graph Assists and Points for both Eastern and Western conference players.
 ;
 proc sgplot data=East_West_Analytic_file;
      scatter x=TEAM
-             y=BLK / merkerattrs=(symbol=circlefilled size=10px)
+             y=BLK / markerattrs=(symbol=circlefilled size=10px)
              filledoutlinedmarkers group=TEAM;
  run;
