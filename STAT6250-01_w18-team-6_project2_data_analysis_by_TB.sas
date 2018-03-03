@@ -39,6 +39,18 @@ title2
 'Rationale: This would help identify which conference is the offensive powerhouse.'
 ;
 
+footnote1
+"The conference that recorded the most points and assists as a total sum of all the players in the respective conference is the Western Conference."
+;
+
+footnote2
+"Although the Western conference players recorded the most points and assists, it was not by any big margin."
+;
+
+footnote3
+"If we look at the graph that compares the number of assists and points among all the players in both conferences, we can see that the statistics for points and assists among most of the players is similar."
+;
+
 *
 Notes: This compares the Points (PTS) and Assists (AST) column in the East
 2016-17 data file with the same columns in the West 2016-17 data files.
@@ -99,6 +111,14 @@ title2
 'Rationale: This would help identify which conference has the best defensive players.'
 ;
 
+footnote1
+"The conference that recorded the most steals and blocks as a total sum among all the palyers in the respective conference is the western conference."
+;
+
+footnote2
+"If we look at the graph that compares the number of steals and blocks for all the players in both conferences, we can observe that with the exception of a handlful of players, the rest had similar amount of blocks and steals."
+;
+
 *
 Note: This compares the column Steals (STL) and Blocks (BLK) in the East 
 2016-17 data file with the same columns in the West 2016-17 files.
@@ -140,11 +160,19 @@ run;
 *******************************************************************************;
 
 title1
-'Research Question: Which players attempted the most free throws the Eastern and Western Conference in 2016-17 season?'
+'Research Question: Which conference attempted the most total amount free throws, the Eastern or Western Conference in the 2016-17 season?'
 ;
 
 title2
 'Rationale: This would help identify if the number of free throws taken in a game have a direct correlation with points scored.'
+;
+
+footnote1
+"The Eastern Conference players recorded the most attempts as a total sum among all the players in their conference than the Western Conference."
+;
+
+footnote2
+"If we look at the results of the graph for the amount of free throws attempted by all the teams in the NBA, we can see that it is similar with the exception of a handful of teams."
 ;
 
 *
