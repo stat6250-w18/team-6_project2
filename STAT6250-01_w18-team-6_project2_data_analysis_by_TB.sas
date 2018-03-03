@@ -26,7 +26,6 @@ X "cd ""%substr(%sysget(SAS_EXECFILEPATH),1,%eval(%length(%sysget(SAS_EXECFILEPA
 %include '.\STAT6250-01_w18-team-6_project2_data_preparation.sas'
 
 
-
 *******************************************************************************;
 * Research Question Analysis Starting Point;
 *******************************************************************************;
@@ -95,9 +94,11 @@ proc sgplot data=East_West_Analytic_file;
      scatter x=PTS
              y=AST / markerattrs=(symbol=circlefilled size=10px)
              filledoutlinedmarkers group=TEAM;
- run;
+run;
        
-       
+title;
+footnote;
+
        
 *******************************************************************************;
 * Research Question Analysis Starting Point;
@@ -153,6 +154,8 @@ proc sgplot data=East_West_Analytic_file;
              filledoutlinedmarkers group=TEAM;
 run;
         
+title;
+footnote;  
   
   
 *******************************************************************************;
@@ -204,3 +207,6 @@ proc sgplot data=East_West_Analytic_file;
              y=BLK / markerattrs=(symbol=circlefilled size=10px)
              filledoutlinedmarkers group=TEAM;
  run;
+
+title;
+footnote;
