@@ -36,7 +36,8 @@ title2
 ;
 
 *
-Methodology: Averaging major statistics by conference and comparing them.
+Methodology: Averaging major statistics (Offensive, Defensive, & Total Rebounds, Assists, 
+Turnovers, Steals, Blocks, and Personal Fouls) by conference and comparing them.
 
 Limitations: Does not test for significance.
 
@@ -132,7 +133,8 @@ title2
 ;
 
 *
-Methodology: Computing adjusted point variable to evaluate efficiency.
+Methodology: Computing adjusted point variable using free throw, 3 pt, and 
+field goals pts to evaluate efficiency.
 
 Limitations: Does not take into account teammate effects.
 
