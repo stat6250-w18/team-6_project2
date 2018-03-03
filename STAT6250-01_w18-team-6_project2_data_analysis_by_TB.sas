@@ -9,9 +9,10 @@ This file uses the following analytic dataset to address several research
 questions regarding individual players statistic in the NBA between the eastern
 and western conference. 
 
-Dataset Name: NBA 16-17 data set.xlsx created in external file
+Dataset Name: NBA 16-17 data set.xlsx created in external file.
 STAT6250-01_w18-team-6_project2_data_preparation.sas, which is assumed to be
-in the same directory as this file
+in the same directory as this file.
+
 See included file for dataset properties
 ;
 
@@ -63,7 +64,7 @@ proc sql;
         from West201617_raw_sorted;      
         select sum(AST) as West_Conf_AST
         from West201617_raw_sorted;     
-run;       
+quit;       
         
 proc print 
     data=East_West_Analytic_file
@@ -121,7 +122,7 @@ proc sql;
         from West201617_raw_sorted;      
         select sum(BLK) as West_Conf_BLK
         from West201617_raw_sorted;
-run;       
+quit;       
      
 *
 Graph Assists and Points for both Eastern and Western conference players.
@@ -130,7 +131,7 @@ proc sgplot data=East_West_Analytic_file;
      scatter x=STL
              y=BLK / markerattrs=(symbol=circlefilled size=10px)
              filledoutlinedmarkers group=TEAM;
- run;
+run;
         
   
   
@@ -165,7 +166,7 @@ proc sql;
         from East201617_raw_sorted;   
         select sum(FTA) as West_Conf_FTA
         from West201617_raw_sorted;   
-run;
+quit;
 
 *
 Graph Assists and Points for both Eastern and Western conference players.
