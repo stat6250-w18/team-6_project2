@@ -300,6 +300,9 @@ data advanced_data_analytic_file;
         USG_
         PACE
         PIE
+        FGM
+        _3PM
+        FTM
     ;
     keep
         CONF
@@ -334,6 +337,9 @@ data advanced_data_analytic_file;
         USG_
         PACE
         PIE
+        FGM
+        _3TM
+        FTM
     ;
    run;
    
@@ -345,6 +351,8 @@ data quest1
     ;
     set
         advanced_data_analytic_file
+    ;
+    MIN = MIN*GP
     ;
     format
         team $5.
@@ -425,6 +433,8 @@ data quest2
     ;
     set
         advanced_data_analytic_file
+    ;
+    MIN=MIN*GP
     ;
     FG60_ = FGM/MIN
     ;
@@ -526,6 +536,8 @@ data quest3
     ;
     set
         advanced_data_analytic_file
+    ;
+    MIN=MIN*GP
     ;
     format
         team $5.
