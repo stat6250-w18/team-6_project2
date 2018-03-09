@@ -265,14 +265,26 @@ and minimal cleaning/transformation needed to address research questions in
 corresponding data-analysis files
 ;
 data advanced_data_analytic_file;
+    merge East_West_Analytic_file Advanced201617_raw_sorted;
+    by player team;
     retain
-    PLAYER
+        CONF
+        OREB
+        DREB
+        REB
+        AST
+        TOV
+        STL
+        BLK
+        PF
+        PLAYER
         TEAM
         AGE
         GP
         W
         L
         MIN
+        PTS
         OFFRTG
         DEFRTG
         NETRTG
@@ -290,12 +302,23 @@ data advanced_data_analytic_file;
         PIE
     ;
     keep
+        CONF
+        OREB
+        DREB
+        REB
+        AST
+        TOV
+        STL
+        BLK
+        PF
+        PLAYER
         TEAM
         AGE
         GP
         W
         L
         MIN
+        PTS
         OFFRTG
         DEFRTG
         NETRTG
