@@ -54,68 +54,6 @@ Possible Follow-up Steps: Testing for significance.
 ;
 
 
-data quest1
-    ;
-    set
-        East_west_analytic_file
-    ;
-    format
-        team $5.
-        GP MIN 4.
-    ;
-    keep
-        player
-        GP
-        CONF
-        team
-        MIN
-        OREB
-        DREB
-        REB
-        AST
-        TOV
-        STL
-        BLK
-        PF
-    ;
-run;
-
-proc sort
-        nodupkey
-        data=quest1
-        out=tm1
-    ;
-    by
-        team
-        player
-    ;
-run;
-
-proc means
-        data=tm1
-        noprint
-    ;
-    where GP > 41 and team ^= "TOT"
-    ;
-    class
-        CONF
-    ;
-    var
-        OREB
-        DREB
-        REB
-        AST
-        TOV
-        STL
-        BLK
-        PF
-    ;
-    output
-        out=top3list(rename=(_freq_=NumberPlayers)) mean=
-          idgroup( max(MIN) out[12] (player
-          OREB DREB REB AST TOV STL BLK PF)=)/autolabel autoname
-    ;
-run;
 
 proc print
         data=top3list
@@ -176,96 +114,12 @@ Possible Follow-up Steps: Take team and teammate effects into account.
 
 ;
 
-data quest2
-    ;
-    set
-        east_west_analytic_file
-    ;
-    Pp60_ = PTS/(MIN)
-    ;
-    FG60_ = FGM/MIN
-    ;
-    _360 = _3PM/MIN
-    ;
-    FT60_ = FTM/MIN
-    ;
-    AST60_ = AST/MIN
-    ;
-    Useful = 2*FG60_ + 3*_360 + FT60_ + AST60_
-    ;
-    format
-        Pp60_ FG60_ _360 FT60_ AST60_ Useful 6.2
-        team $5.
-        GP MIN PTS 4.
-    ;
-    keep
-        player
-        team
-        MIN
-        PTS
-        GP
-        FG60_
-        _360
-        FT60_
-        AST60_
-        Useful
-    ;
-run;
 
-proc sort
-        nodupkey
-        data=quest2
-        out=tm1
-    ;
-    by
-        team
-        player
-    ;
-run;
-
-proc means
-        data=tm1
-        noprint
-    ;
-    where GP > 41 and team ^= "TOT"
-    ;
-    class
-        team
-    ;
-    var
-        useful
-    ;
-    output
-        out=top3list(rename=(_freq_=NumberPlayers)) mean=
-          idgroup( max(useful) out[12] (player
-          useful)=)/autolabel autoname
-    ;
-run;
-
-data n3list
-    ;
-    set
-        top3list
-    ;
-    new = (useful_1 + useful_2 + useful_3 + useful_4 + useful_5 + useful_6 + useful_7)/7
-    ;
-    format
-        new 6.3
-    ;
-run;
-
-proc sort
-        data=n3list
-    ;
-    by
-        descending new
-    ;
-run;
 
 title1 'Top 5 Players';
 
 proc print
-        data=n3list
+        data=n3list2
         noobs label
     ;
     var
@@ -329,82 +183,9 @@ Possible Follow-up Steps: Standardize variables and create a comprehensive "catc
 
 ;
 
-data quest3
-    ;
-    set
-        advanced201617_raw_sorted
-    ;
-    format
-        team $5.
-        GP MIN 4.
-    ;
-    keep
-        player
-        team
-        MIN
-        GP
-        offrtg
-        defrtg
-        pie
-    ;
-run;
-
-proc sort
-        nodupkey
-        data=quest3
-        out=tm1
-    ;
-    by
-        team
-        player
-    ;
-run;
-
-proc means
-        data=tm1
-        noprint
-    ;
-    where GP > 41 and team ^= "TOT"
-    ;
-    class
-        team
-    ;
-    var
-        offrtg
-        defrtg
-        pie
-    ;
-    output
-        out=top3list(rename=(_freq_=NumberPlayers)) mean=
-          idgroup( max(MIN) out[12] (player
-          offrtg defrtg pie)=)/autolabel autoname
-    ;
-run;
-
-data n3list
-    ;
-    set
-        top3list
-    ;
-    new = (offrtg_1 + offrtg_2 + offrtg_3 + offrtg_4 + offrtg_5 + offrtg_6 + offrtg_7)/7
-    ;
-    new2 = (defrtg_1 + defrtg_2 + defrtg_3 + defrtg_4 + defrtg_5 + defrtg_6 + defrtg_7)/7
-    ;
-    new3 = ((pie_1 + pie_2 + pie_3 + pie_4 + pie_5 + pie_6 + pie_7)*10)/7
-    ;
-    new4 = (new + new2 + new3)/3
-    ;
-    format
-        new new2 new3 new4 6.3
-    ;
-run;
-
-proc sort data=n3list;
-  by descending new4;
-run;
 
 proc print
-        data=n3list
+        data=n3list3
         noobs label
     ;
     var
