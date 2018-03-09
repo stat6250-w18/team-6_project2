@@ -66,7 +66,7 @@ data quest1
     keep
         player
         GP
-        conf
+        CONF
         team
         MIN
         OREB
@@ -98,7 +98,7 @@ proc means
     where GP > 41 and team ^= "TOT"
     ;
     class
-        conf
+        CONF
     ;
     var
         OREB
@@ -122,7 +122,7 @@ proc print
         noobs label
     ;
     var
-        conf
+        CONF
         OREB_mean
         DREB_mean
         REB_mean
@@ -131,6 +131,16 @@ proc print
         STL_mean
         BLK_mean
         PF_mean
+    ;
+    format
+        OREB_mean
+        DREB_mean
+        REB_mean
+        AST_mean
+        TOV_mean
+        STL_mean
+        BLK_mean
+        PF_mean 9.2
     ;
 run;
 
@@ -154,7 +164,7 @@ footnote1
 ;
 
 *
-Note: This uses the columns creates an adjusted Points per Minute statistic 
+Note: This uses the columns creates an adjusted Points per Minute statistic
 using the columns PTS, FGM, _3PM, FTM, AST, and MIN.
 
 Methodology: Computing adjusted point variable using free throw, 3 pt, and
@@ -389,10 +399,6 @@ data n3list
     ;
 run;
 
-proc means data=n3list;
-  var new new2 new3 new4;
-run;
-
 proc sort data=n3list;
   by descending new4;
 run;
@@ -412,4 +418,3 @@ run;
 
 title;
 footnote;
-
