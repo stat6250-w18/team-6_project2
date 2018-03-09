@@ -140,6 +140,17 @@ proc sort
     ;
 run;
 
+data East201617_raw_sorted
+    ; 
+    set East201617_raw_sorted
+    ;
+    CONF = "EAST"
+    ;
+    format 
+        CONF $4.
+    ;
+run;
+
 proc sort
         nodupkey
         data=West201617_raw
@@ -148,6 +159,18 @@ proc sort
     ;
     by
         Player
+    ;
+run;
+
+data West201617_raw_sorted
+    ; 
+    set 
+        West201617_raw_sorted
+    ;
+    CONF = "WEST"
+    ;
+    format 
+        CONF $4.
     ;
 run;
 
@@ -168,6 +191,7 @@ run;
 data East_West_Analytic_file;
    retain
         TEAM
+	CONF
         AGE
         GP
         W
@@ -198,6 +222,7 @@ data East_West_Analytic_file;
    ;
    keep
    	TEAM
+	CONF
         AGE
         GP
         W
@@ -243,6 +268,7 @@ corresponding data-analysis files
 data advanced_data_analytic_file;
     retain
 	PLAYER
+	CONF
         TEAM
         AGE
         GP
@@ -267,6 +293,7 @@ data advanced_data_analytic_file;
     ;
     keep
         TEAM
+	CONF
         AGE
         GP
         W
