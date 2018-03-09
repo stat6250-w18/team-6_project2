@@ -6,16 +6,18 @@
 *
 [Dataset 1 Name] NBA East 2016-17
 
-[Experimental Units] Contains players stats for 2016-17 NBA Season from the 
+[Experimental Units] Contains players stats for 2016-17 NBA Season from the
 Eastern Conference
 
 [Number of Observations] 256
 
 [Number of Features] 29
 
-[Data Source] https://stats.nba.com/players/traditional/?PerMode=Totals&sort=PTS&dir=-1&Season=2016 17&SeasonType=Regular%20Season&Conference=East
+[Data Source] https://stats.nba.com/players/traditional/?PerMode=Totals&sort=PTS&dir=-1&Season=2016
+17&SeasonType=Regular%20Season&Conference=East
 
 [Data Dictionary] http://stats.nba.com/players
+
 
 [Unique ID Schema] The column “Player” is a primary key
 
@@ -23,7 +25,7 @@ Eastern Conference
 
 [Dataset 2 Name] NBA West 2016-17
 
-[Experimental Units] Contains players stats for 2016-17 NBA Season from the 
+[Experimental Units] Contains players stats for 2016-17 NBA Season from the
 Western Conference
 
 [Number of Observations] 256
@@ -32,7 +34,9 @@ Western Conference
 
 [Data Source] https://stats.nba.com/players/traditional/?PerMode=Totals&sort=PTS&dir=-1&Season=2016-17&SeasonType=Regular%20Season&Conference=West
 
+
 [Data Dictionary] http://stats.nba.com/players
+
 
 [Unique ID Schema] The column “Player” is a primary key
 
@@ -40,7 +44,7 @@ Western Conference
 
 [Dataset 3 Name] NBA Advanced 2016-17
 
-[Experimental Units] Contains advanced players stats for 2016-17 NBA Season 
+[Experimental Units] Contains advanced players stats for 2016-17 NBA Season
 from both the Eastern and Western Conference
 
 [Number of Observations] 486
@@ -49,7 +53,9 @@ from both the Eastern and Western Conference
 
 [Data Source] http://stats.nba.com/players/advanced/?sort=GP&dir=-1&Season=2016-17&SeasonType=Regular%20Season
 
+
 [Data Dictionary] http://stats.nba.com/players/advanced
+
 
 [Unique ID Schema] The column “Player” is a primary key
 --
@@ -61,18 +67,21 @@ from both the Eastern and Western Conference
 * setup environmental parameters;
 %let inputDataset1URL =
 https://github.com/stat6250/team-6_project2/blob/master/data/East201617.xlsx?raw=true
+
 ;
 %let inputDataset1Type = XLSX;
 %let inputDataset1DSN = East201617_raw;
 
 %let inputDataset2URL =
 https://github.com/stat6250/team-6_project2/blob/master/data/West201617.xlsx?raw=true
+
 ;
 %let inputDataset2Type = XLSX;
 %let inputDataset2DSN = West201617_raw;
 
 %let inputDataset3URL =
 https://github.com/stat6250/team-6_project2/blob/master/data/Advanced201617.xlsx?raw=true
+
 ;
 %let inputDataset3Type = XLSX;
 %let inputDataset3DSN = Advanced201617_raw;
@@ -140,16 +149,11 @@ proc sort
     ;
 run;
 
-data East201617_raw_sorted
-    ; 
-    set East201617_raw_sorted
-    ;
-    CONF = "EAST"
-    ;
-    format 
-        CONF $4.
-    ;
+data East201617_raw_sorted; set East201617_raw_sorted;
+   conf = "EAST";
+   format conf $4.
 run;
+
 
 proc sort
         nodupkey
@@ -162,16 +166,9 @@ proc sort
     ;
 run;
 
-data West201617_raw_sorted
-    ; 
-    set 
-        West201617_raw_sorted
-    ;
-    CONF = "WEST"
-    ;
-    format 
-        CONF $4.
-    ;
+data West201617_raw_sorted; set West201617_raw_sorted;
+   conf = "WEST";
+   format conf $4.
 run;
 
 proc sort
@@ -185,13 +182,14 @@ proc sort
     ;
 run;
 
-
+ 
 * combine East1617 data and West1617 data vertically
 ;
 data East_West_Analytic_file;
    retain
+        Player
         TEAM
-	CONF
+        conf
         AGE
         GP
         W
@@ -221,8 +219,9 @@ data East_West_Analytic_file;
         VAR30
    ;
    keep
-   	TEAM
-	CONF
+    Player
+       TEAM
+    conf
         AGE
         GP
         W
@@ -261,14 +260,13 @@ data East_West_Analytic_file;
 run;
 
 
-* build analytic dataset from raw datasets with the least number of columns  
+* build analytic dataset from raw datasets with the least number of columns 
 and minimal cleaning/transformation needed to address research questions in
 corresponding data-analysis files
 ;
 data advanced_data_analytic_file;
     retain
-	PLAYER
-	CONF
+    PLAYER
         TEAM
         AGE
         GP
@@ -293,7 +291,6 @@ data advanced_data_analytic_file;
     ;
     keep
         TEAM
-	CONF
         AGE
         GP
         W
@@ -315,4 +312,5 @@ data advanced_data_analytic_file;
         PACE
         PIE
     ;
+   run;
    
