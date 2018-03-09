@@ -337,3 +337,278 @@ data advanced_data_analytic_file;
     ;
    run;
    
+
+* Setup for JC Question 1 ;
+
+* Creating dataset for question1 and limiting to only necessary variables;
+data quest1
+    ;
+    set
+        advanced_data_analytic_file
+    ;
+    format
+        team $5.
+        GP MIN 4.
+    ;
+    keep
+        player
+        GP
+        CONF
+        team
+        MIN
+        OREB
+        DREB
+        REB
+        AST
+        TOV
+        STL
+        BLK
+        PF
+    ;
+run;
+
+* Ensuring no duplicates in new file ;
+proc sort
+        nodupkey
+        data=quest1
+        out=tm1
+    ;
+    by
+        team
+        player
+    ;
+run;
+
+* 
+Using only players that have played more than 41 games,
+finding conference means for the 8 variables listed below.
+;
+
+proc means
+        data=tm1
+        noprint
+    ;
+    where GP > 41 and team ^= "TOT"
+    ;
+    class
+        CONF
+    ;
+    var
+        OREB
+        DREB
+        REB
+        AST
+        TOV
+        STL
+        BLK
+        PF
+    ;
+    output
+        out=top3list(rename=(_freq_=NumberPlayers)) mean=
+          idgroup( max(MIN) out[12] (player
+          OREB DREB REB AST TOV STL BLK PF)=)/autolabel autoname
+    ;
+run;
+
+
+
+
+* Setup for JC Question 2;
+
+* 
+Creating dataset for analyzing question2.
+Creating successful shots per minute, for each of 3 scoring categories.
+Creating adjusted point per minute statistic, called useful.
+;
+
+data quest2
+    ;
+    set
+        advanced_data_analytic_file
+    ;
+    FG60_ = FGM/MIN
+    ;
+    _360 = _3PM/MIN
+    ;
+    FT60_ = FTM/MIN
+    ;
+    AST60_ = AST/MIN
+    ;
+    Useful = 2*FG60_ + 3*_360 + FT60_ + AST60_
+    ;
+    format
+        Pp60_ FG60_ _360 FT60_ AST60_ Useful 6.2
+        team $5.
+        GP MIN PTS 4.
+    ;
+    keep
+        player
+        team
+        MIN
+        PTS
+        GP
+        FG60_
+        _360
+        FT60_
+        AST60_
+        Useful
+    ;
+run;
+
+* Ensuring no duplicates in data;
+
+proc sort
+        nodupkey
+        data=quest2
+        out=tm2
+    ;
+    by
+        team
+        player
+    ;
+run;
+
+* 
+Using only players who played more than 41 games,
+found mean of useful for each team.
+;
+
+proc means
+        data=tm2
+        noprint
+    ;
+    where GP > 41 and team ^= "TOT"
+    ;
+    class
+        team
+    ;
+    var
+        useful
+    ;
+    output
+        out=top3list2(rename=(_freq_=NumberPlayers)) mean=
+          idgroup( max(useful) out[12] (player
+          useful)=)/autolabel autoname
+    ;
+run;
+
+*Creating new dataset, adding the useful scores to the top 7 players per team;
+
+data n3list2
+    ;
+    set
+        top3list2
+    ;
+    new = (useful_1 + useful_2 + useful_3 + useful_4 + useful_5 + useful_6 + useful_7)/7
+    ;
+    format
+        new 6.3
+    ;
+run;
+
+* Sorting n3list2 by new, to have descending list of top teams;
+
+proc sort
+        data=n3list2
+    ;
+    by
+        descending new
+    ;
+run;
+
+
+
+* Setup for JC Question 3;
+
+* Creating dataset for question3 analysis.;
+
+data quest3
+    ;
+    set
+        advanced_data_analytic_file
+    ;
+    format
+        team $5.
+        GP MIN 4.
+    ;
+    keep
+        player
+        team
+        MIN
+        GP
+        offrtg
+        defrtg
+        pie
+    ;
+run;
+
+* Ensuring no duplicates. ;
+
+proc sort
+        nodupkey
+        data=quest3
+        out=tm3
+    ;
+    by
+        team
+        player
+    ;
+run;
+
+* Finding average mean by team of each player for offrtg, defrtg, and pie ; 
+
+proc means
+        data=tm3
+        noprint
+    ;
+    where GP > 41 and team ^= "TOT"
+    ;
+    class
+        team
+    ;
+    var
+        offrtg
+        defrtg
+        pie
+    ;
+    output
+        out=top3list3(rename=(_freq_=NumberPlayers)) mean=
+          idgroup( max(MIN) out[12] (player
+          offrtg defrtg pie)=)/autolabel autoname
+    ;
+run;
+
+* 
+Averaging top 7 players per team together.
+New3 multiplied by 10 to have similar scale.
+New4 created as a catch all statistic.
+;
+
+data n3list3
+    ;
+    set
+        top3list3
+    ;
+    new = (offrtg_1 + offrtg_2 + offrtg_3 + offrtg_4 + offrtg_5 + offrtg_6 + offrtg_7)/7
+    ;
+    new2 = (defrtg_1 + defrtg_2 + defrtg_3 + defrtg_4 + defrtg_5 + defrtg_6 + defrtg_7)/7
+    ;
+    new3 = ((pie_1 + pie_2 + pie_3 + pie_4 + pie_5 + pie_6 + pie_7)*10)/7
+    ;
+    new4 = (new + new2 + new3)/3
+    ;
+    format
+        new new2 new3 new4 6.3
+    ;
+run;
+
+* Sort n3list3 by new4;
+
+proc sort data=n3list3
+    ;
+    by descending 
+        new4
+    ;
+run;
+
+
