@@ -38,7 +38,15 @@ title2
 ;
 
 footnote1
-' '
+'In the above chart, we see the West leading in every single statistic listed.'
+;
+
+footnote2
+'This seems to imply, that the west is a more high risk high reward type conference, where the risks either payoff resulting in more points, rebounds, steals or backfire resulting in higher turnovers and fouls.'
+;
+
+footnote3
+'Conversely, the East seems to be a more defense oriented conference, playing a safer game.'
 ;
 
 *
@@ -98,7 +106,15 @@ title2
 ;
 
 footnote1
-' '
+'Above is a chart of the top players on each time in terms of points per minute.'
+;
+
+footnote2
+'The players below match my limited knowledge of the NBA.'
+;
+
+footnote3
+'The new stat on the left ranks the teams from highest to lowest, and this also matches my intuition of who the higher scoring teams are.'
 ;
 
 *
@@ -115,8 +131,6 @@ Possible Follow-up Steps: Take team and teammate effects into account.
 ;
 
 
-
-title1 'Top 5 Players';
 
 proc print
         data=n3list2
@@ -169,7 +183,11 @@ title2
 ;
 
 footnote1
-' '
+'Listed in the chart is the offensive, defensive, player impact, and overall ratings.'
+;
+
+footnote2
+'The Top 2 teams last season are the same at the top of the chart here in terms of overall rating.'
 ;
 
 *
