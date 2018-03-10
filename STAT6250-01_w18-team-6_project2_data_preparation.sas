@@ -338,7 +338,7 @@ data advanced_data_analytic_file;
         PACE
         PIE
         FGM
-        _3TM
+        _3PM
         FTM
     ;
    run;
