@@ -77,16 +77,6 @@ proc sql;
         from West201617_raw_sorted;     
 quit;       
         
-proc print 
-    data=East_West_Analytic_file
-   ;
-   var
-       TEAM
-       AST
-       PTS
-   ;
-run;
-
 *
 Graph Assists and Points for both Eastern and Western conference players.
 ;
