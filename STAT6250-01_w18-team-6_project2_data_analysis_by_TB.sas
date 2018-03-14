@@ -25,10 +25,9 @@ X "cd ""%substr(%sysget(SAS_EXECFILEPATH),1,%eval(%length(%sysget(SAS_EXECFILEPA
 * load external file that generates analytic dataset NBA_2016_analytic_file;
 %include '.\STAT6250-01_w18-team-6_project2_data_preparation.sas'
 
-
 *******************************************************************************;
 * Research Question Analysis Starting Point;
-*******************************************************************************;
+*******************************************************************************; 
 
 title1
 'Research Question: Which conference recorded the most points and assists between the 2016 and 2017 season?'
