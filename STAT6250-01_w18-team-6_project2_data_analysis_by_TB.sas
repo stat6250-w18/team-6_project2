@@ -103,7 +103,7 @@ title2
 ;
 
 footnote1
-"The conference that recorded the most steals and blocks as a total sum among all the palyers in the respective conference is the western conference."
+"The conference that recorded the most steals and blocks as a total sum among all the players in the respective conference is the western conference (most blocks) and Eastern conference (most steals)."
 ;
 
 footnote2
@@ -161,7 +161,7 @@ title2
 ;
 
 footnote1
-"The Eastern Conference players recorded the most attempts as a total sum among all the players in their conference than the Western Conference."
+"The Western Conference players recorded the most attempts as a total sum among all the players in their conference than the Eastern Conference."
 ;
 
 footnote2
