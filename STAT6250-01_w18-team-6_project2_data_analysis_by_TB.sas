@@ -193,8 +193,8 @@ quit;
 Graph Free Throws Attempted for both Eastern and Western conference players.
 ;
 proc sgplot data=East_West_Analytic_file;
-     scatter x=FTA
-             y=TEAM / markerattrs=(symbol=circlefilled size=10px)
+     scatter x=TEAM
+             y=FTA / markerattrs=(symbol=circlefilled size=10px)
              filledoutlinedmarkers group=TEAM;
 run;
 
