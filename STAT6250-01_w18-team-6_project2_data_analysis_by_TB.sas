@@ -136,7 +136,7 @@ proc sql;
 quit;       
      
 *
-Graph Assists and Points for both Eastern and Western conference players.
+Graph Steal and Blocks for both Eastern and Western conference players.
 ;
 proc sgplot data=East_West_Analytic_file;
      scatter x=STL
@@ -188,15 +188,6 @@ proc sql;
         select sum(FTA) as West_Conf_FTA
         from West201617_raw_sorted;   
 quit;
-
-*
-Graph Assists and Points for both Eastern and Western conference players.
-;
-proc sgplot data=East_West_Analytic_file;
-     scatter x=TEAM
-             y=BLK / markerattrs=(symbol=circlefilled size=10px)
-             filledoutlinedmarkers group=TEAM;
- run;
 
 title;
 footnote;
