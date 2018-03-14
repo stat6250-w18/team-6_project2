@@ -14,12 +14,14 @@ Eastern Conference
 [Number of Features] 29
 
 [Data Source] https://stats.nba.com/players/traditional/?PerMode=Totals&sort=PTS&dir=-1&Season=2016
+
 17&SeasonType=Regular%20Season&Conference=East
 
 [Data Dictionary] http://stats.nba.com/players
 
 
-[Unique ID Schema] The column “Player” is a primary key
+
+[Unique ID Schema] The column â€œPlayerâ€ is a primary key
 
 --
 
@@ -35,10 +37,12 @@ Western Conference
 [Data Source] https://stats.nba.com/players/traditional/?PerMode=Totals&sort=PTS&dir=-1&Season=2016-17&SeasonType=Regular%20Season&Conference=West
 
 
+
 [Data Dictionary] http://stats.nba.com/players
 
 
-[Unique ID Schema] The column “Player” is a primary key
+
+[Unique ID Schema] The column â€œPlayerâ€ is a primary key
 
 --
 
@@ -54,10 +58,12 @@ from both the Eastern and Western Conference
 [Data Source] http://stats.nba.com/players/advanced/?sort=GP&dir=-1&Season=2016-17&SeasonType=Regular%20Season
 
 
+
 [Data Dictionary] http://stats.nba.com/players/advanced
 
 
-[Unique ID Schema] The column “Player” is a primary key
+
+[Unique ID Schema] The column â€œPlayerâ€ is a primary key
 --
 ;
 
@@ -68,6 +74,7 @@ from both the Eastern and Western Conference
 %let inputDataset1URL =
 https://github.com/stat6250/team-6_project2/blob/master/data/East201617.xlsx?raw=true
 
+
 ;
 %let inputDataset1Type = XLSX;
 %let inputDataset1DSN = East201617_raw;
@@ -75,12 +82,14 @@ https://github.com/stat6250/team-6_project2/blob/master/data/East201617.xlsx?raw
 %let inputDataset2URL =
 https://github.com/stat6250/team-6_project2/blob/master/data/West201617.xlsx?raw=true
 
+
 ;
 %let inputDataset2Type = XLSX;
 %let inputDataset2DSN = West201617_raw;
 
 %let inputDataset3URL =
 https://github.com/stat6250/team-6_project2/blob/master/data/Advanced201617.xlsx?raw=true
+
 
 ;
 %let inputDataset3Type = XLSX;
@@ -260,7 +269,7 @@ data East_West_Analytic_file;
 run;
 
 
-* build analytic dataset from raw datasets with the least number of columns 
+* build analytic dataset from raw datasets with the least number of columns
 and minimal cleaning/transformation needed to address research questions in
 corresponding data-analysis files
 ;
@@ -342,7 +351,7 @@ data advanced_data_analytic_file;
         FTM
     ;
    run;
-   
+  
 
 * Setup for JC Question 1 ;
 
@@ -387,7 +396,7 @@ proc sort
     ;
 run;
 
-* 
+*
 Using only players that have played more than 41 games,
 finding conference means for the 8 variables listed below.
 ;
@@ -423,7 +432,7 @@ run;
 
 * Setup for JC Question 2;
 
-* 
+*
 Creating dataset for analyzing question2.
 Creating successful shots per minute, for each of 3 scoring categories.
 Creating adjusted point per minute statistic, called useful.
@@ -444,10 +453,10 @@ data quest2
     ;
     AST60_ = AST/MIN
     ;
-    Useful = 2*FG60_ + 3*_360 + FT60_ + AST60_
+    P_GP = 2*FG60_ + 3*_360 + FT60_ + AST60_
     ;
     format
-        Pp60_ FG60_ _360 FT60_ AST60_ Useful 6.2
+        Pp60_ FG60_ _360 FT60_ AST60_ P_GP 6.2
         team $5.
         GP MIN PTS 4.
     ;
@@ -461,7 +470,7 @@ data quest2
         _360
         FT60_
         AST60_
-        Useful
+        P_GP
     ;
 run;
 
@@ -478,7 +487,7 @@ proc sort
     ;
 run;
 
-* 
+*
 Using only players who played more than 41 games,
 found mean of useful for each team.
 ;
@@ -493,12 +502,12 @@ proc means
         team
     ;
     var
-        useful
+        P_GP
     ;
     output
         out=top3list2(rename=(_freq_=NumberPlayers)) mean=
-          idgroup( max(useful) out[12] (player
-          useful)=)/autolabel autoname
+          idgroup( max(P_GP) out[12] (player
+          P_GP)=)/autolabel autoname
     ;
 run;
 
@@ -509,10 +518,10 @@ data n3list2
     set
         top3list2
     ;
-    new = (useful_1 + useful_2 + useful_3 + useful_4 + useful_5 + useful_6 + useful_7)/7
+    T_P_GP = (P_GP_1 + P_GP_2 + P_GP_3 + P_GP_4 + P_GP_5 + P_GP_6 + P_GP_7)/7
     ;
     format
-        new 6.3
+        T_P_GP 6.3
     ;
 run;
 
@@ -522,7 +531,7 @@ proc sort
         data=n3list2
     ;
     by
-        descending new
+        descending T_P_GP
     ;
 run;
 
@@ -544,6 +553,7 @@ data quest3
         GP MIN 4.
     ;
     keep
+        conf
         player
         team
         MIN
@@ -567,7 +577,7 @@ proc sort
     ;
 run;
 
-* Finding average mean by team of each player for offrtg, defrtg, and pie ; 
+* Finding average mean by team of each player for offrtg, defrtg, and pie ;
 
 proc means
         data=tm3
@@ -576,7 +586,7 @@ proc means
     where GP > 41 and team ^= "TOT"
     ;
     class
-        team
+        team conf
     ;
     var
         offrtg
@@ -590,7 +600,7 @@ proc means
     ;
 run;
 
-* 
+*
 Averaging top 7 players per team together.
 New3 multiplied by 10 to have similar scale.
 New4 created as a catch all statistic.
@@ -601,25 +611,26 @@ data n3list3
     set
         top3list3
     ;
+    where not missing(conf);
     new = (offrtg_1 + offrtg_2 + offrtg_3 + offrtg_4 + offrtg_5 + offrtg_6 + offrtg_7)/7
     ;
     new2 = (defrtg_1 + defrtg_2 + defrtg_3 + defrtg_4 + defrtg_5 + defrtg_6 + defrtg_7)/7
     ;
     new3 = ((pie_1 + pie_2 + pie_3 + pie_4 + pie_5 + pie_6 + pie_7)*10)/7
     ;
-    new4 = (new + new2 + new3)/3
+    Rating = (new + new2 + new3)/3
     ;
     format
-        new new2 new3 new4 6.3
+        new new2 new3 Rating 6.3
     ;
 run;
 
-* Sort n3list3 by new4;
+* Sort n3list3 by Rating;
 
 proc sort data=n3list3
     ;
-    by descending 
-        new4
+    by descending
+        Rating
     ;
 run;
 
