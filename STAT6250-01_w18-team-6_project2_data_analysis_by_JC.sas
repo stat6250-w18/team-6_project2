@@ -28,7 +28,6 @@ X "cd ""%substr(%sysget(SAS_EXECFILEPATH),1,%eval(%length(%sysget(SAS_EXECFILEPA
 *******************************************************************************;
 * Research Question Analysis Starting Point;
 *******************************************************************************;
-
 title1
 'Research Question: Are there any significant differences in playstyle between conferences (more pts, free throws, etc.)? '
 ;
@@ -114,7 +113,7 @@ footnote2
 ;
 
 footnote3
-'The new stat on the left ranks the teams from highest to lowest, and this also matches my intuition of who the higher scoring teams are.'
+'The Tm P/MIN stat on the left ranks the teams from highest to lowest, and this also matches my intuition of who the higher scoring teams are.'
 ;
 
 *
@@ -137,18 +136,18 @@ proc print
         noobs label
     ;
     var
-        new
+        T_P_GP
         team
         player_1
-        useful_1
+        P_GP_1
         player_2
-        useful_2
+        P_GP_2
         player_3
-        useful_3
+        P_GP_3
         player_4
-        useful_4
+        P_GP_4
         player_5
-        useful_5
+        P_GP_5
     ;
     label
         player_1 = "#1 Player"
@@ -158,11 +157,12 @@ proc print
         player_5 = "#5 Player"
     ;
     label
-        useful_1 = "Useful"
-        useful_2 = "Useful"
-        useful_3 = "Useful"
-        useful_4 = "Useful"
-        useful_5 = "Useful"
+        T_P_GP = "TM P/MIN"
+        P_GP_1 = "P/MIN"
+        P_GP_2 = "P/MIN"
+        P_GP_3 = "P/MIN"
+        P_GP_4 = "P/MIN"
+        P_GP_5 = "P/MIN"
     ;
 run;
 
@@ -183,11 +183,11 @@ title2
 ;
 
 footnote1
-'Listed in the chart is the offensive, defensive, player impact, and overall ratings.'
+'Listed in the chart is the overall rating estimate created by averaging the offensive, defensive, and player impact estimates for the Top 7 players of each team in minutes played.'
 ;
 
 footnote2
-'The Top 2 teams last season are the same at the top of the chart here in terms of overall rating.'
+'The score correctly guessed 7 of the top 8 East teams, 6 of the top 8 West teams, and 13 of 15 playoff matchups.'
 ;
 
 *
@@ -201,19 +201,24 @@ Possible Follow-up Steps: Standardize variables and create a comprehensive "catc
 
 ;
 
-
-proc print
+proc sgplot
         data=n3list3
-        noobs label
     ;
-    var
-        new4
-        team
-        new
-        new2
-        new3
+    vbar
+        team / group=conf response=Rating
+    ;
+    yaxis
+        grid min=95
+    ;
+    xaxis
+        grid discreteorder=data
+    ;
+    refline
+        'CHI' / axis=x
     ;
 run;
+quit;
+
 
 title;
 footnote;
